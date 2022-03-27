@@ -19,12 +19,12 @@ class Cropper:
         self.mask = [CircleMask, RectangleMask, FreeFormMask][type]
         self.input = input
         self.output = output
-        self.image_paths = self.list_images()
+        self.image_paths = self.list_images(self.input)
         self.window_name = "Editor"
         for image_path in self.image_paths:
             self.crop(image_path)
 
-    def list_images(self) -> list[str]:
+    def list_images(self, path: str) -> list[str]:
         """
         This method gets all the paths to all images in the input 
         folder.
@@ -37,18 +37,12 @@ class Cropper:
         file_types = [".png", ".jpg"]
         
         # traverse through the tree
-        for root, dirs, files in os.walk(self.input):
+        for root, dirs, files in os.walk(path):
             # add all images in the root folder
             images.extend([os.path.join(root, file) for file in 
                 files if any([file_type in file.lower() for file_type 
                 in file_types])])
-            
-            # add all images in the sub-directories
-            for dir in dirs:
-                images.extend(
-                    self.list_images(os.path.join(root, dir))
-                    )
-        
+                
         return images
 
     def crop(self, image_path: str) -> None:
