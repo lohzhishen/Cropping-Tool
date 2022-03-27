@@ -1,6 +1,12 @@
 # Cropping-Tool
 
-USEAGE: python Cropper.py -i {input folder path} -o {output folder path} -t {type of mask to use for cropping}
+<strong>Requirements:</strong> 
+
+* Python 3.9
+* opencv
+* numpy
+
+<strong>USEAGE:</strong> python Cropper.py -i {input folder path} -o {output folder path} -t {type of mask to use for cropping}
 
 -i {input folder path}: File path of the folder containing all images to be cropped.
 
